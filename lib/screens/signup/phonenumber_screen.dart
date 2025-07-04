@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-class PhoneNumberScreen extends StatelessWidget {
+import 'otp_screen.dart';
+
+class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
 
   @override
+  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
+}
+
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Color(0x00000000),
-      ),
+      decoration: BoxDecoration(color: Color(0x00000000)),
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 50.0,
-          right: 50.0,
-          bottom: 50.0,
-        ),
+        padding: const EdgeInsets.only(left: 50.0, right: 50.0, bottom: 50.0),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
-          mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
@@ -49,30 +48,20 @@ class PhoneNumberScreen extends StatelessWidget {
                 const SizedBox(height: 107),
 
                 IntlPhoneField(
-                  keyboardType:
-                      TextInputType.phone,
-                  decoration:
-                      const InputDecoration(
-                        hintText: 'Mobile Number',
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    hintText: 'Mobile Number',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
                   initialCountryCode: 'IN',
                   onChanged: (phone) {
                     print(phone.completeNumber);
                   },
-                  dropdownTextStyle: TextStyle(
-                    color: Colors.grey,
-                  ),
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
+                  dropdownTextStyle: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.white),
                   dropdownIcon: const Icon(
                     Icons.arrow_drop_down,
                     color: Colors.white,
@@ -81,23 +70,24 @@ class PhoneNumberScreen extends StatelessWidget {
               ],
             ),
 
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius:
-                    BorderRadius.circular(8.0),
-              ),
-              child: Center(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                      ),
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OtpScreen()),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                   ),
                 ),
