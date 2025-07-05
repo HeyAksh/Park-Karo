@@ -78,7 +78,7 @@ class OtpScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 12.0),
                       child: const Text(
-                        'Next',
+                        'Verify',
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                     ),
