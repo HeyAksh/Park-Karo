@@ -69,6 +69,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
                   TextField(
                     controller: _fullname,
+                    style: TextStyle(color: Colors.white),
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       hintText: 'Full Name',
@@ -80,6 +81,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
                   TextField(
                     controller: _email,
+                    style: TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: 'Email(Optional)',
@@ -89,7 +91,9 @@ class _SetupScreenState extends State<SetupScreen> {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/homepage');
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
