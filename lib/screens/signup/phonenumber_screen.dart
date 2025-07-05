@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
-import 'otp_screen.dart';
+import 'package:parkkaro/screens/signup/otp_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -11,6 +11,8 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
+  String completePhoneNumber = "";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,7 +60,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   ),
                   initialCountryCode: 'IN',
                   onChanged: (phone) {
-                    print(phone.completeNumber);
+                    completePhoneNumber = phone.completeNumber;
                   },
                   dropdownTextStyle: TextStyle(color: Colors.grey),
                   style: const TextStyle(color: Colors.white),
@@ -72,10 +74,34 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => OtpScreen()),
-                );
+                final phonenumber = completePhoneNumber;
+
+                if (phonenumber.isEmpty) {
+                } else {
+                  FirebaseAuth.instance.verifyPhoneNumber(
+                    phoneNumber: phonenumber,
+                    verificationCompleted:
+                        (PhoneAuthCredential phoneAuthCredential) {},
+                    verificationFailed: (FirebaseAuthException e) {},
+                    codeSent: (
+                      String verificationId,
+                      int? forceResendingToken,
+                    ) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => OtpScreen(
+                                verificationId: verificationId,
+                                forceResendingToken: forceResendingToken,
+                                phoneNumber: phonenumber,
+                              ),
+                        ),
+                      );
+                    },
+                    codeAutoRetrievalTimeout: (String verificationId) {},
+                  );
+                }
               },
               child: Container(
                 decoration: BoxDecoration(

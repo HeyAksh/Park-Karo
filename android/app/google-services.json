@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "532376365402",
+    "project_id": "park-karo-61c5e",
+    "storage_bucket": "park-karo-61c5e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532376365402:android:99366abaa44f145444eb63",
+        "android_client_info": {
+          "package_name": "com.parkaro.parkkaro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFT5Z2AXO3Ju6ouZx3WJwIbBbsK7lipEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
